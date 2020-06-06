@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class Page2(ttk.Frame):
+class AddNewProd(ttk.Frame):
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
 
@@ -10,16 +10,8 @@ class Page2(ttk.Frame):
         # Center your Frame in the middele-top.
         self.columnconfigure(0, weight=1)
 
-        label = ttk.Label(self, text="Scan product")
+        label = ttk.Label(self, text="Add a new product here")
         label.grid()
-
-        button = ttk.Button(
-            self,
-            text="Go to stock",
-            command=lambda: controller.show_frame("Page1"),
-            width=16
-        )
-        button.grid()
 
         go_back_button = ttk.Button(
             self,

@@ -1,7 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 import tkinter.font as font
-from frames import StartPage, Page1, Page2, Page3, Page4, Page5
+from frames.start_page import StartPage
+from frames.stock_page import StockPage
+from frames.add_new_product import AddNewProd
+from frames.delete_product import DeleteProd
+from frames.update_stock import UpdateStock
+from frames.scan_product import ScanProd
+from frames.update_stock import UpdateStock
 from ctypes import windll
 windll.shcore.SetProcessDpiAwareness(1)
 
@@ -30,7 +36,7 @@ class BasementGui(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, Page1, Page2, Page3, Page4, Page5):
+        for F in (StartPage, StockPage, AddNewProd, DeleteProd, UpdateStock, ScanProd, UpdateStock):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame

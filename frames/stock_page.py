@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class Page1(ttk.Frame):
+class StockPage(ttk.Frame):
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
 
@@ -16,7 +16,7 @@ class Page1(ttk.Frame):
         button_1 = ttk.Button(
             self,
             text="Add new prod",
-            command=lambda: controller.show_frame("Page3"),
+            command=lambda: controller.show_frame("AddNewProd"),
             width=16
         )
         button_1.grid()
@@ -24,7 +24,7 @@ class Page1(ttk.Frame):
         button_2 = ttk.Button(
             self,
             text="Delete prod",
-            command=lambda: controller.show_frame("Page4"),
+            command=lambda: controller.show_frame("DeleteProd"),
             width=16
         )
         button_2.grid()
