@@ -12,7 +12,7 @@ class StartPage(ttk.Frame):
 
         button1 = ttk.Button(
             self,
-            text="Vieuw Stock",
+            text="View Stock",
             command=lambda: controller.show_frame("StockPage"),
             width=16
         )

@@ -27,7 +27,7 @@ class BasementGui(tk.Tk):
         # Give the Frame a name.
         self.title("Basement stock")
         # Give the Frame a size.
-        self.geometry("505x280")
+        self.geometry("1050x700")
         # Center your Frame in the middele-top.
         self.columnconfigure(0, weight=1)
 
