@@ -9,15 +9,16 @@ class StockPage(ttk.Frame):
 
         self.controller = controller
         # Center your Frame in the middele-top.
-        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
 
+        # Add some buttons.
         button_1 = ttk.Button(
             self,
             text="Add new prod",
             command=lambda: controller.show_frame("AddNewProd"),
             width=13
         )
-        button_1.grid(row=0, column=0, columnspan=2, sticky="E")
+        button_1.grid(row=0, column=0)
 
         button_2 = ttk.Button(
             self,
@@ -25,7 +26,7 @@ class StockPage(ttk.Frame):
             command=lambda: controller.show_frame("DeleteProd"),
             width=13
         )
-        button_2.grid(row=0, column=2, columnspan=2, sticky="W")
+        button_2.grid(row=0, column=1, sticky="W")
 
         go_back_button = ttk.Button(
             self,
@@ -35,25 +36,49 @@ class StockPage(ttk.Frame):
         )
         go_back_button.grid(row=0, column=3, sticky="E")
 
-        name_label = ttk.Label(self, text="Name")
-        name_label.grid(row=1, column=0)
+        # The data from th API.
+        request =[
+            {
+                "name": "Choco",
+                "count": 5,
+                "price_p_p": 2.5,
+                "barcode": "12345"
+            },
+            {
+                "name": "Cheakpeas",
+                "count": 10,
+                "price_p_p": 0.7,
+                "barcode": "789456"
+            },
+            {
+                "name": "Bread",
+                "count": 3,
+                "price_p_p": 2.57,
+                "barcode": "585844"
+            }
+        ]
 
-        name_label = ttk.Label(self, text="Serial number")
-        name_label.grid(row=1, column=1)
+        # Transform the API's data to the TableCanvas' form.
+        # Use the unique index for the rows in the TableCanvas.
+        data = {}
+        for i in request:
+            data[request.index(i)] = i
 
-        name_label = ttk.Label(self, text="Ammount")
-        name_label.grid(row=1, column=2)
-
-        name_label = ttk.Label(self, text="Price/piece")
-        name_label.grid(row=1, column=3)
+        # Create a new frame for the TableCanvas.
+        tframe = ttk.Frame(self)
+        tframe.grid(row=2, columnspan=4)
+        table = TableCanvas(
+            tframe,
+            data=data,
+            width=1300,
+            height=600,
+            cellwidth=330,
+            rowheight=40,
+            rowheaderwidth=60, # To hide; set value to 0
+            thefont=('Arial', 14),
+        )
+        table.show()
 
         # Add padding in between every label.
         for child in self.winfo_children():
-            child.grid_configure(padx=8, pady=8)       
-
-        tframe = ttk.Frame(self)
-        tframe.grid(row=2, columnspan=4)
-        table = TableCanvas(tframe)
-        table.show()
-
-
+            child.grid_configure(padx=12, pady=12)

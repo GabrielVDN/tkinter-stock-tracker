@@ -13,6 +13,7 @@ class UpdateStock(ttk.Frame):
         label = ttk.Label(self, text="Updata the quantities here")
         label.grid()
 
+        # Add some buttons.
         go_back_button = ttk.Button(
             self,
             text="🔙",

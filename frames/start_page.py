@@ -7,9 +7,11 @@ class StartPage(ttk.Frame):
         ttk.Frame.__init__(self, parent)
         
         self.controller = controller
-        # Center your Frame in the middele-top.
+        
+        # Center your Frame in the middle-top.
         self.columnconfigure(0, weight=1)
 
+        # Add some buttons.
         button1 = ttk.Button(
             self,
             text="View Stock",

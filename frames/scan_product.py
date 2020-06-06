@@ -13,6 +13,7 @@ class ScanProd(ttk.Frame):
         label = ttk.Label(self, text="Scan product")
         label.grid()
 
+        # Add some buttons.
         button = ttk.Button(
             self,
             text="Go to stock",

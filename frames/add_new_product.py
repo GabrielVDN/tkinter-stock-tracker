@@ -13,6 +13,7 @@ class AddNewProd(ttk.Frame):
         label = ttk.Label(self, text="Add a new product here")
         label.grid()
 
+        # Add some buttons.
         go_back_button = ttk.Button(
             self,
             text="🔙",
