@@ -7,7 +7,6 @@ class StartPage(ttk.Frame):
         ttk.Frame.__init__(self, parent)
         
         self.controller = controller
-        
         # Center your Frame in the middle-top.
         self.columnconfigure(0, weight=1)
 
@@ -39,4 +38,4 @@ class StartPage(ttk.Frame):
 
         # Add padding in between every label.
         for child in self.winfo_children():
-            child.grid_configure(padx=15, pady=15)
+            child.grid_configure(padx=10, pady=10)

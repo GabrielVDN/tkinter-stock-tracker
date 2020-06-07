@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from tkintertable import TableCanvas, TableModel
+from tkintertable import TableCanvas
 
 
 class StockPage(ttk.Frame):
@@ -40,19 +40,19 @@ class StockPage(ttk.Frame):
         request =[
             {
                 "name": "Choco",
-                "count": 5,
+                "ammount": 5,
                 "price_p_p": 2.5,
                 "barcode": "12345"
             },
             {
                 "name": "Cheakpeas",
-                "count": 10,
+                "ammount": 10,
                 "price_p_p": 0.7,
                 "barcode": "789456"
             },
             {
                 "name": "Bread",
-                "count": 3,
+                "ammount": 3,
                 "price_p_p": 2.57,
                 "barcode": "585844"
             }

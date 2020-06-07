@@ -13,7 +13,7 @@ windll.shcore.SetProcessDpiAwareness(1)
 
 
 # Create a Tkinter Widget.
-class BasementGui(tk.Tk):
+class StockTracker(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
@@ -25,9 +25,9 @@ class BasementGui(tk.Tk):
         style.theme_use("clam")
         
         # Give the Frame a name.
-        self.title("Basement stock")
+        self.title("Stock tracker")
         # Give the Frame a size.
-        self.geometry("1450x760")
+        self.geometry("1450x770")
         # Center your Frame in the middele-top.
         self.columnconfigure(0, weight=1)
 
@@ -53,5 +53,5 @@ class BasementGui(tk.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-GUI = BasementGui()
+GUI = StockTracker()
 GUI.mainloop()
