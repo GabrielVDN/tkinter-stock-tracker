@@ -24,9 +24,9 @@ class StockTracker(tk.Tk):
         style = ttk.Style()
         style.theme_use("clam")
         
-        # Give the Frame a name.
+        # Give the Widget a name.
         self.title("Stock tracker")
-        # Give the Frame a size.
+        # Give the Widget a size.
         self.geometry("1450x770")
         # Center your Frame in the middele-top.
         self.columnconfigure(0, weight=1)
