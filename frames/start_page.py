@@ -39,3 +39,6 @@ class StartPage(ttk.Frame):
         # Add padding in between every label.
         for child in self.winfo_children():
             child.grid_configure(padx=12, pady=12)
+    
+    def focus_on_entry(self):
+        pass

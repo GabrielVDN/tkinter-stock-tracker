@@ -71,3 +71,6 @@ class UpdateStock(ttk.Frame):
             font=("TkDefaultFont 15")
         )
         self.search_entry.grid(row=0, column=0, padx=82, sticky="W")
+    
+    def focus_on_entry(self):
+        self.search_entry.focus()

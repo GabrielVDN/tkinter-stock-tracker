@@ -52,6 +52,7 @@ class StockTracker(tk.Tk):
         '''Show a frame for the given page name'''
         frame = self.frames[page_name]
         frame.tkraise()
+        frame.focus_on_entry()
 
 GUI = StockTracker()
 GUI.mainloop()

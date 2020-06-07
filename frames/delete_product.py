@@ -25,3 +25,6 @@ class DeleteProd(ttk.Frame):
         # Add padding in between every label.
         for child in self.winfo_children():
             child.grid_configure(padx=8, pady=8)
+
+    def focus_on_entry(self):
+        pass

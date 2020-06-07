@@ -74,3 +74,6 @@ class AddNewProd(ttk.Frame):
         self.entry_amount.delete(0, "end")
         self.entry_price_piece.delete(0, "end")
         self.entry_barcode.focus()
+
+    def focus_on_entry(self):
+        self.entry_barcode.focus()
