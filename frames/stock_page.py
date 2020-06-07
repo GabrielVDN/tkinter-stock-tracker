@@ -14,19 +14,19 @@ class StockPage(ttk.Frame):
         # Add some buttons.
         button_1 = ttk.Button(
             self,
-            text="Add new prod",
+            text="Add new product",
             command=lambda: controller.show_frame("AddNewProd"),
-            width=13
+            width=19
         )
-        button_1.grid(row=0, column=0)
+        button_1.grid(row=0, column=0, padx=(84, 10), pady=8, sticky="E")
 
         button_2 = ttk.Button(
             self,
-            text="Delete prod",
+            text="Delete product",
             command=lambda: controller.show_frame("DeleteProd"),
-            width=13
+            width=19
         )
-        button_2.grid(row=0, column=1, sticky="W")
+        button_2.grid(row=0, column=1, pady=8, sticky="W")
 
         go_back_button = ttk.Button(
             self,
@@ -34,7 +34,7 @@ class StockPage(ttk.Frame):
             command=lambda: controller.show_frame("StartPage"),
             width=3
         )
-        go_back_button.grid(row=0, column=3, sticky="E")
+        go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
 
         # The data from th API.
         request = [
@@ -79,9 +79,6 @@ class StockPage(ttk.Frame):
         )
         table.show()
 
-        # Add padding in between every label.
-        for child in self.winfo_children():
-            child.grid_configure(padx=12, pady=12)
 
     def focus_on_entry(self):
         pass

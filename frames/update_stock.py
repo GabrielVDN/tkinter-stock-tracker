@@ -19,7 +19,7 @@ class UpdateStock(ttk.Frame):
             command=lambda: self.search_entry.focus(),
             width=3
         )
-        search_button.grid(row=0, column=0, columnspan=3)
+        search_button.grid(row=0, column=0, columnspan=3, padx=8, pady=8)
 
         go_back_button = ttk.Button(
             self,
@@ -27,7 +27,7 @@ class UpdateStock(ttk.Frame):
             command=lambda: controller.show_frame("StartPage"),
             width=3
         )
-        go_back_button.grid(row=0, column=3)
+        go_back_button.grid(row=0, column=3, padx=8, pady=8)
                
         # The data from th API.
         request =[
@@ -59,10 +59,6 @@ class UpdateStock(ttk.Frame):
             thefont=('Arial', 14),
         )
         table.show()
-        
-        # Add padding in between every label.
-        for child in self.winfo_children():
-            child.grid_configure(padx=8, pady=8)
 
         # Put this dowm here so you can customize the 'padx'.
         self.search_entry = ttk.Entry(
@@ -71,6 +67,7 @@ class UpdateStock(ttk.Frame):
             font=("TkDefaultFont 15")
         )
         self.search_entry.grid(row=0, column=0, padx=82, sticky="W")
+    
     
     def focus_on_entry(self):
         self.search_entry.focus()

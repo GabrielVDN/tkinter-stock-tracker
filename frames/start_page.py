@@ -17,7 +17,7 @@ class StartPage(ttk.Frame):
             command=lambda: controller.show_frame("StockPage"),
             width=16
         )
-        button1.grid()
+        button1.pack(fill="both", expand=True, padx=6, pady=6)
 
         button2 = ttk.Button(
             self,
@@ -25,7 +25,7 @@ class StartPage(ttk.Frame):
             command=lambda: controller.show_frame("ScanProd"),
             width=16
         )
-        button2.grid()
+        button2.pack(fill="both", expand=True, padx=6, pady=6)
 
         button3 = ttk.Button(
             self,
@@ -33,12 +33,8 @@ class StartPage(ttk.Frame):
             command=lambda: controller.show_frame("UpdateStock"),
             width=16
         )
-        button3.grid()
-
-
-        # Add padding in between every label.
-        for child in self.winfo_children():
-            child.grid_configure(padx=12, pady=12)
+        button3.pack(fill="both", expand=True, padx=6, pady=6)
+    
     
     def focus_on_entry(self):
         pass

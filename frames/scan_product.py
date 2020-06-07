@@ -25,14 +25,6 @@ class ScanProd(ttk.Frame):
             width=18
         )
         button.grid(row=0, columnspan=4)
-
-        go_back_button = ttk.Button(
-            self,
-            text="🔙",
-            command=lambda: controller.show_frame("StartPage"),
-            width=3
-        )
-        go_back_button.grid(row=0, column=3, sticky="E")
                
         # The data from th API.
         request =[
@@ -68,6 +60,15 @@ class ScanProd(ttk.Frame):
         # Add padding in between every label.
         for child in self.winfo_children():
             child.grid_configure(padx=12, pady=12)
+
+        go_back_button = ttk.Button(
+            self,
+            text="🔙",
+            command=lambda: controller.show_frame("StartPage"),
+            width=3
+        )
+        go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
+
 
     def focus_on_entry(self):
         pass

@@ -32,7 +32,7 @@ class StockTracker(tk.Tk):
         self.columnconfigure(0, weight=1)
 
         # Set the overall fontsize to 15 instead of 10.
-        font.nametofont("TkDefaultFont").configure(size=15)
+        font.nametofont("TkDefaultFont").configure(size=20)
 
         self.frames = {}
 
