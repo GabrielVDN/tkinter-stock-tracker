@@ -29,7 +29,7 @@ class AddNewProd(ttk.Frame):
         )
         submit_button.grid(row=5, columnspan=3)
         
-        # Create a form to add new products, asking for all the information.
+        # Create a forum to add new products, asking for all the information.
         # All labels.
         label_barcode = ttk.Label(self, text="Barcode:")
         label_barcode.grid(row=1, column=0, sticky="E")
