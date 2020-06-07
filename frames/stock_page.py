@@ -37,24 +37,24 @@ class StockPage(ttk.Frame):
         go_back_button.grid(row=0, column=3, sticky="E")
 
         # The data from th API.
-        request =[
+        request = [
             {
-                "name": "Choco",
-                "ammount": 5,
-                "price_p_p": 2.5,
-                "barcode": "12345"
+                "name": "nutella",
+                "amount": 5,
+                "barcode": "12345",
+                "price_piece": 2.5
             },
             {
                 "name": "Cheakpeas",
-                "ammount": 10,
-                "price_p_p": 0.7,
-                "barcode": "789456"
+                "amount": 10,
+                "barcode": "789456",
+                "price_piece": 0.7
             },
             {
-                "name": "Bread",
-                "ammount": 3,
-                "price_p_p": 2.57,
-                "barcode": "585844"
+                "name": "Oatmeal",
+                "amount": 10,
+                "barcode": "48988565AC",
+                "price_piece": 0.6
             }
         ]
 
