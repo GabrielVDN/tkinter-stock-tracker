@@ -60,7 +60,7 @@ class ScanProd(ttk.Frame):
             height=600,
             cellwidth=330,
             rowheight=40,
-            rowheaderwidth=60, # To hide; set value to 0
+            rowheaderwidth=60, # To hide; set value to 0.
             thefont=('Arial', 14),
         )
         table.show()
