@@ -27,7 +27,7 @@ class StockTracker(tk.Tk):
         # Give the Widget a name.
         self.title("Stock tracker")
         # Give the Widget a size.
-        self.geometry("1450x770")
+        self.geometry("1450x780")
         # Center your Frame in the middele-top.
         self.columnconfigure(0, weight=1)
 

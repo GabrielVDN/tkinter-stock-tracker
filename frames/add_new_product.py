@@ -32,7 +32,7 @@ class AddNewProd(ttk.Frame):
             self,
             text="Submit product",
             command=lambda: self.submit_new_prod(),
-            width=36
+            width=50
         )
         submit_button.grid(row=5, columnspan=3)
 
