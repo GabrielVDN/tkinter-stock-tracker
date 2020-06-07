@@ -38,7 +38,7 @@ class ScanProd(ttk.Frame):
         request =[
             {
                 "name": "",
-                "ammount": "",
+                "amount": "",
                 "price_p_p": "",
                 "barcode": ""
             },
