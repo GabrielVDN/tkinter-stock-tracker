@@ -39,8 +39,8 @@ class ScanProd(ttk.Frame):
             {
                 "name": "",
                 "amount": "",
-                "price_p_p": "",
-                "barcode": ""
+                "barcode": "",
+                "price_piece": ""
             },
         ]
 
