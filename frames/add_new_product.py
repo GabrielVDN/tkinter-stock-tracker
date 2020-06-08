@@ -73,13 +73,13 @@ class AddNewProd(ttk.Frame):
         go_back_button.grid(row=0, column=1, padx=8, pady=8, sticky="NE")
 
         # All labels.
-        label_barcode = ttk.Label(self, text="Barcode:")
+        label_barcode = ttk.Label(self, text="Barcode*:")
         label_barcode.grid(row=1, column=0, padx=(0,58), sticky="E")
 
-        label_name = ttk.Label(self, text="Name:")
+        label_name = ttk.Label(self, text="Name*:")
         label_name.grid(row=2, column=0, padx=(0,98), sticky="E")
 
-        label_amount = ttk.Label(self, text="Amount:")
+        label_amount = ttk.Label(self, text="Amount*:")
         label_amount.grid(row=3, column=0, padx=(0,60), sticky="E")
 
         label_price_piece = ttk.Label(self, text="Price/Piece:")
@@ -87,16 +87,19 @@ class AddNewProd(ttk.Frame):
 
         
     def submit_new_prod(self):
-        if messagebox.askokcancel("Add new product", "Are you sure you want add this?!") == True:
-            print("This item has bean added!!!")
-            print(self.controller.add_new_prod_barcode.get())
-            print(self.controller.add_new_prod_name.get())
-            print(self.controller.add_new_prod_amount.get())
-            print(self.controller.add_new_prod_price_piece.get())
-            self.entry_barcode.delete(0, "end")
-            self.entry_name.delete(0, "end")
-            self.entry_amount.delete(0, "end")
-            self.entry_price_piece.delete(0, "end")
+        if self.controller.add_new_prod_barcode.get() and self.controller.add_new_prod_name.get() and self.controller.add_new_prod_amount.get():
+            if messagebox.askokcancel("Add new product", "Are you sure you want add this?!") == True:
+                print("This item has bean added!!!")
+                print(self.controller.add_new_prod_barcode.get())
+                print(self.controller.add_new_prod_name.get())
+                print(self.controller.add_new_prod_amount.get())
+                print(self.controller.add_new_prod_price_piece.get())
+                self.entry_barcode.delete(0, "end")
+                self.entry_name.delete(0, "end")
+                self.entry_amount.delete(0, "end")
+                self.entry_price_piece.delete(0, "end")
+        else:
+            messagebox.showerror("Missing fields", "You need to input all the required field.")
         self.entry_barcode.focus()
 
     def focus_on_entry(self):
