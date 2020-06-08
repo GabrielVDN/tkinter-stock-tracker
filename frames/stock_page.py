@@ -70,6 +70,7 @@ class StockPage(ttk.Frame):
         table = TableCanvas(
             tframe,
             data=data,
+            read_only=True,
             width=1300,
             height=600,
             cellwidth=330,
