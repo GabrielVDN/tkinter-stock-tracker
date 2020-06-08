@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkintertable import TableCanvas
 import tkinter.font as font
+from tkinter import messagebox
 
 
 class AddNewProd(ttk.Frame):
@@ -12,19 +13,33 @@ class AddNewProd(ttk.Frame):
         # Center your Frame in the middele-top.
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
-        
+
+        ['name', 'amount', 'barcode', 'price_piece']
+
         # Create a forum to add new products, asking for all the information.
         # All entry fields.
-        self.entry_barcode = ttk.Entry(self, width=40, font=("TkDefaultFont", 20))
+        self.entry_barcode = ttk.Entry(
+            self, width=40, textvariable=controller.add_new_prod_barcode,
+            font=("TkDefaultFont", 20)
+        )
         self.entry_barcode.grid(row=1, column=1, sticky="W")
 
-        self.entry_name = ttk.Entry(self, width=40, font=("TkDefaultFont", 20))
+        self.entry_name = ttk.Entry(
+            self, width=40, textvariable=controller.add_new_prod_name,
+            font=("TkDefaultFont", 20)
+        )
         self.entry_name.grid(row=2, column=1, sticky="W")
 
-        self.entry_amount = ttk.Entry(self, width=40, font=("TkDefaultFont", 20))
+        self.entry_amount = ttk.Entry(
+            self, width=40, textvariable=controller.add_new_prod_amount,
+            font=("TkDefaultFont", 20)
+        )
         self.entry_amount.grid(row=3, column=1, sticky="W")
 
-        self.entry_price_piece = ttk.Entry(self, width=40, font=("TkDefaultFont", 20))
+        self.entry_price_piece = ttk.Entry(
+            self, width=40, textvariable=controller.add_new_prod_price_piece,
+            font=("TkDefaultFont", 20)
+        )
         self.entry_price_piece.grid(row=4, column=1, sticky="W")
 
         # Add some buttons.
@@ -72,10 +87,16 @@ class AddNewProd(ttk.Frame):
 
         
     def submit_new_prod(self):
-        self.entry_barcode.delete(0, "end")
-        self.entry_name.delete(0, "end")
-        self.entry_amount.delete(0, "end")
-        self.entry_price_piece.delete(0, "end")
+        if messagebox.askokcancel("Add new product", "Are you sure you want add this?!") == True:
+            print("This item has bean added!!!")
+            print(self.controller.add_new_prod_barcode.get())
+            print(self.controller.add_new_prod_name.get())
+            print(self.controller.add_new_prod_amount.get())
+            print(self.controller.add_new_prod_price_piece.get())
+            self.entry_barcode.delete(0, "end")
+            self.entry_name.delete(0, "end")
+            self.entry_amount.delete(0, "end")
+            self.entry_price_piece.delete(0, "end")
         self.entry_barcode.focus()
 
     def focus_on_entry(self):

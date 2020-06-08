@@ -34,8 +34,12 @@ class StockTracker(tk.Tk):
         # Set the overall fontsize to 15 instead of 10.
         font.nametofont("TkDefaultFont").configure(size=20)
 
-        # Create all needed tk.-variables
-
+        # Create all needed tk.-variables.
+        #            AddNewProd frame            #
+        self.add_new_prod_barcode = tk.StringVar()
+        self.add_new_prod_name = tk.StringVar()
+        self.add_new_prod_amount = tk.StringVar()
+        self.add_new_prod_price_piece = tk.StringVar()
 
 
         
