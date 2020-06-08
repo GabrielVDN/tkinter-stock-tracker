@@ -18,7 +18,7 @@ class StockPage(ttk.Frame):
             command=lambda: controller.show_frame("AddNewProd"),
             width=19
         )
-        button_1.grid(row=0, column=0, padx=(84, 10), pady=8, sticky="E")
+        button_1.grid(row=0, column=0, padx=(70, 10), pady=8, sticky="E")
 
         button_2 = ttk.Button(
             self,

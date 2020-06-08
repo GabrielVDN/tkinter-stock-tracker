@@ -8,23 +8,42 @@ class ScanProd(ttk.Frame):
         ttk.Frame.__init__(self, parent)
 
         self.controller = controller
-        
-        # Center your Frame, all the entry's and labels in the middele. 
+        # Center your Frame, all the entry's and labels in the middle. 
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
 
-        label = ttk.Label(self, text="Scanning...")
-        label.grid(row=0, column=0)
+        self.search_entry = ttk.Entry(
+            self,
+            width=24,
+            font=("TkDefaultFont 15")
+        )
+        self.search_entry.grid(row=0, column=0, padx=(72, 12), sticky="W")
 
         # Add some buttons.
+        search_button = ttk.Button(
+            self,
+            text="🔍",
+            command=lambda: self.search_entry.focus(),
+            width=3
+        )
+        search_button.grid(row=0, column=0, padx=(446, 0), pady=8) # Put it in the same column and adjust padx to be far enough.
+
         button = ttk.Button(
             self,
             text="Go to stock",
             command=lambda: controller.show_frame("StockPage"),
             width=18
         )
-        button.grid(row=0, columnspan=4)
+        button.grid(row=0, column=2, sticky="W")
+
+        go_back_button = ttk.Button(
+            self,
+            text="🔙",
+            command=lambda: controller.show_frame("StartPage"),
+            width=3
+        )
+        go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
                
         # The data from th API.
         request =[
@@ -57,18 +76,6 @@ class ScanProd(ttk.Frame):
         )
         table.show()
 
-        # Add padding in between every label.
-        for child in self.winfo_children():
-            child.grid_configure(padx=12, pady=12)
-
-        go_back_button = ttk.Button(
-            self,
-            text="🔙",
-            command=lambda: controller.show_frame("StartPage"),
-            width=3
-        )
-        go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
-
 
     def focus_on_entry(self):
-        pass
+        self.search_entry.focus()

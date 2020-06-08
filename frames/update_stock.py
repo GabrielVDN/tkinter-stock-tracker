@@ -9,8 +9,16 @@ class UpdateStock(ttk.Frame):
         ttk.Frame.__init__(self, parent)
 
         self.controller = controller
-        # Center your Frame in the middele-top.
+        # Center your Frame, all the entry's and labels in the middle. 
         self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+
+        self.search_entry = ttk.Entry(
+            self,
+            width=24,
+            font=("TkDefaultFont 15")
+        )
+        self.search_entry.grid(row=0, column=0, padx=(72, 12), pady=8, sticky="W")
 
         # Add some buttons.
         search_button = ttk.Button(
@@ -19,7 +27,7 @@ class UpdateStock(ttk.Frame):
             command=lambda: self.search_entry.focus(),
             width=3
         )
-        search_button.grid(row=0, column=0, columnspan=3, padx=8, pady=8)
+        search_button.grid(row=0, column=0, padx=(200, 0), pady=8) # Put it in the same column and adjust padx to be far enough.
 
         go_back_button = ttk.Button(
             self,
@@ -27,7 +35,7 @@ class UpdateStock(ttk.Frame):
             command=lambda: controller.show_frame("StartPage"),
             width=3
         )
-        go_back_button.grid(row=0, column=3, padx=8, pady=8)
+        go_back_button.grid(row=0, column=1, padx=8, pady=8, sticky="NE")
                
         # The data from th API.
         request =[
@@ -59,14 +67,6 @@ class UpdateStock(ttk.Frame):
             thefont=('Arial', 14),
         )
         table.show()
-
-        # Put this dowm here so you can customize the 'padx'.
-        self.search_entry = ttk.Entry(
-            self,
-            width=30,
-            font=("TkDefaultFont 15")
-        )
-        self.search_entry.grid(row=0, column=0, padx=82, sticky="W")
     
     
     def focus_on_entry(self):

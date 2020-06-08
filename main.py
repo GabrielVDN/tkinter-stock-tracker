@@ -28,11 +28,17 @@ class StockTracker(tk.Tk):
         self.title("Stock tracker")
         # Give the Widget a size.
         self.geometry("1450x780")
-        # Center your Frame in the middele-top.
+        # Center your Frame in the middle-top.
         self.columnconfigure(0, weight=1)
 
         # Set the overall fontsize to 15 instead of 10.
         font.nametofont("TkDefaultFont").configure(size=20)
+
+        # Create all needed tk.-variables
+
+
+
+        
 
         self.frames = {}
 
