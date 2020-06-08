@@ -42,3 +42,4 @@ class DeleteProd(ttk.Frame):
         if messagebox.askokcancel("Delete", "Are you sure you want delete this?!") == True:
             print("This item has bean deleted!!!")
         self.entry_barcode.focus()
+        self.entry_barcode.delete(0, 'end')
