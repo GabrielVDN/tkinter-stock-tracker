@@ -49,13 +49,13 @@ class UpdateStock(ttk.Frame):
 
         # Create a new frame for the TableCanvas.
         tframe = ttk.Frame(self)
-        tframe.grid(row=1, columnspan=4)
+        tframe.grid(row=1, columnspan=4, padx=10, pady=10)
         self.table = TableCanvas(
             tframe,
             data=data,
             width=1300,
             height=600,
-            cellwidth=330,
+            cellwidth=325,
             rowheight=40,
             rowheaderwidth=60, # To hide; set value to 0
             thefont=('Arial', 14),
