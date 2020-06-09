@@ -107,24 +107,27 @@ class AddNewProd(ttk.Frame):
             self.entry_barcode.focus()
 
     def post_to_api(self):
+        '''Post to the api if the messagebox is True'''
         if messagebox.askokcancel("Add new product", "Are you sure you want add this?!"):
             self.data_for_post = {}
-            self.data_for_post['name'] = self.controller.add_new_prod_barcode.get()
-            self.data_for_post['amount'] = self.controller.add_new_prod_name.get()
-            self.data_for_post['barcode'] = int(self.controller.add_new_prod_amount.get())
-            self.data_for_post['price_piece'] = float(self.controller.add_new_prod_price_piece.get())
-            print(self.data_for_post)
-            r = requests.post("http://127.0.0.1:8000/products/", data=self.data_for_post, auth=("gabriel", "1"))
-            
-            print(r.status_code)
-            
-            self.entry_barcode.delete(0, "end")
-            self.entry_name.delete(0, "end")
-            self.entry_amount.delete(0, "end")
-            self.entry_price_piece.delete(0, "end")
-            self.entry_barcode.focus()
-            self.entry_amount.focus()
+            self.data_for_post['barcode'] = self.controller.add_new_prod_barcode.get()
+            self.data_for_post['name'] = self.controller.add_new_prod_name.get()
+            self.data_for_post['amount'] = int(self.controller.add_new_prod_amount.get())
+            self.data_for_post['price_piece'] = self.controller.add_new_prod_price_piece.get()
+            requests.post("http://127.0.0.1:8000/products/", data=self.data_for_post, auth=("gabriel", "1"))
+
+            self.empty_entry_fields()
+
+    def empty_entry_fields(self):      
+        self.entry_barcode.delete(0, "end")
+        self.entry_name.delete(0, "end")
+        self.entry_amount.delete(0, "end")
+        self.entry_price_piece.delete(0, "end")
+        self.entry_barcode.focus()
 
 
     def focus_on_entry(self):
         self.entry_barcode.focus()
+
+    def redraw_tables(self):
+        pass

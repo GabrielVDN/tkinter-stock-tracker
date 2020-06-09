@@ -61,6 +61,8 @@ class StockTracker(tk.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
         frame.focus_on_entry()
+        frame.redraw_tables()
+
 
 GUI = StockTracker()
 GUI.mainloop()

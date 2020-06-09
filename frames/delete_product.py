@@ -34,11 +34,14 @@ class DeleteProd(ttk.Frame):
         self.entry_barcode.grid(row=1, columnspan=2, pady=40)
 
 
-    def focus_on_entry(self):
-        self.entry_barcode.focus()
-
     def aks_delete(self):
         if messagebox.askokcancel("Delete", "Are you sure you want delete this?!") == True:
             print("This item has bean deleted!!!")
         self.entry_barcode.focus()
         self.entry_barcode.delete(0, 'end')
+
+    def focus_on_entry(self):
+        self.entry_barcode.focus()
+
+    def redraw_tables(self):
+        pass

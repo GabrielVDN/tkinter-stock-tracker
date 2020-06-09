@@ -37,15 +37,19 @@ class StockPage(ttk.Frame):
         )
         go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
 
+        # The data from th API
+        self.request = requests.get("http://127.0.0.1:8000/products/", auth=("gabriel", "1"))
 
         # Transform the API's data to the TableCanvas' form.
         # Use the unique index for the rows in the TableCanvas.
         data = {}
+        for i in self.request.json():
+            data[self.request.json().index(i)] = i
 
         # Create a new frame for the TableCanvas.
         tframe = ttk.Frame(self)
         tframe.grid(row=2, columnspan=4)
-        table = TableCanvas(
+        self.table = TableCanvas(
             tframe,
             data=data,
             read_only=True,
@@ -56,8 +60,19 @@ class StockPage(ttk.Frame):
             rowheaderwidth=60, # To hide; set value to 0
             thefont=('Arial', 14),
         )
-        table.show()
+        self.table.show()
 
 
     def focus_on_entry(self):
         pass
+
+    def redraw_tables(self):
+        # The data from th API
+        self.request = requests.get("http://127.0.0.1:8000/products/", auth=("gabriel", "1"))
+
+        # Transform the API's data to the TableCanvas' form.
+        # Use the unique index for the rows in the TableCanvas.
+        data = {}
+        for i in self.request.json():
+            data[self.request.json().index(i)] = i
+        self.table.redraw()

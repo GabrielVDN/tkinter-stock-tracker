@@ -38,3 +38,6 @@ class StartPage(ttk.Frame):
     
     def focus_on_entry(self):
         pass
+
+    def redraw_tables(self):
+        pass
