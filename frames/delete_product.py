@@ -42,9 +42,11 @@ class DeleteProd(ttk.Frame):
         if messagebox.askokcancel("Delete", "Are you sure you want delete this?!") == True:
             url = f"http://127.0.0.1:8000/products/{self.controller.delete_prod_barcode.get()}/"
             request = requests.delete(url, auth=("gabriel", "1"))
-            print(request)
             if request.status_code != 204:
-                messagebox.showerror("None Existant Prod", "This product doesn't exist in the stock.")
+                messagebox.showerror(
+                    "None Existant Prod", "This product doesn't exist in the stock." +
+                    "\nBe sure to not edit the barcode when trying to delete the product!"
+                    )
         self.entry_barcode.focus()
         self.entry_barcode.delete(0, 'end')
 
