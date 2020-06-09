@@ -21,7 +21,7 @@ class StartPage(ttk.Frame):
 
         button2 = ttk.Button(
             self,
-            text="Scan a product",
+            text="Scan A Product",
             command=lambda: controller.show_frame("ScanProd"),
             width=16
         )
@@ -29,7 +29,7 @@ class StartPage(ttk.Frame):
 
         button3 = ttk.Button(
             self,
-            text="Update stock",
+            text="Update Stock",
             command=lambda: controller.show_frame("UpdateStock"),
             width=16
         )

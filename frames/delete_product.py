@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+import requests
 
 class DeleteProd(ttk.Frame):
     def __init__(self, parent, controller):
@@ -24,19 +25,26 @@ class DeleteProd(ttk.Frame):
 
         delete_button = ttk.Button(
             self,
-            text="Delete",
-            command=lambda: self.aks_delete(),
+            text="Delete Product",
+            command=lambda: self.delete_product(),
             width=20
         )
         delete_button.grid(row=2, columnspan=2)
 
-        self.entry_barcode = ttk.Entry(self, font=("TkDefaultFont", 20))
+        self.entry_barcode = ttk.Entry(
+            self, font=("TkDefaultFont", 20), textvariable=controller.delete_prod_barcode
+        )
         self.entry_barcode.grid(row=1, columnspan=2, pady=40)
 
 
-    def aks_delete(self):
+    def delete_product(self):
+        '''Delete the product with the given barcode'''
         if messagebox.askokcancel("Delete", "Are you sure you want delete this?!") == True:
-            print("This item has bean deleted!!!")
+            url = f"http://127.0.0.1:8000/products/{self.controller.delete_prod_barcode.get()}/"
+            request = requests.delete(url, auth=("gabriel", "1"))
+            print(request)
+            if request.status_code != 204:
+                messagebox.showerror("None Existant Prod", "This product doesn't exist in the stock.")
         self.entry_barcode.focus()
         self.entry_barcode.delete(0, 'end')
 

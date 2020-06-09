@@ -43,7 +43,7 @@ class AddNewProd(ttk.Frame):
         # Add some buttons.
         submit_button = ttk.Button(
             self,
-            text="Submit product",
+            text="Submit Product",
             command=lambda: self.submit_new_prod(),
             width=50
         )

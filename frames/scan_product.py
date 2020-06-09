@@ -32,7 +32,7 @@ class ScanProd(ttk.Frame):
 
         button = ttk.Button(
             self,
-            text="Go to stock",
+            text="Go To Stock",
             command=lambda: controller.show_frame("StockPage"),
             width=18
         )
@@ -84,3 +84,4 @@ class ScanProd(ttk.Frame):
         for i in self.request.json():
             data[self.request.json().index(i)] = i
         self.table.redraw()
+        print("././././././././././././././././.")

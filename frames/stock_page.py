@@ -15,7 +15,7 @@ class StockPage(ttk.Frame):
         # Add some buttons.
         button_1 = ttk.Button(
             self,
-            text="Add new product",
+            text="Add New Product",
             command=lambda: controller.show_frame("AddNewProd"),
             width=19
         )
@@ -23,7 +23,7 @@ class StockPage(ttk.Frame):
 
         button_2 = ttk.Button(
             self,
-            text="Delete product",
+            text="Delete Product",
             command=lambda: controller.show_frame("DeleteProd"),
             width=19
         )
@@ -76,3 +76,4 @@ class StockPage(ttk.Frame):
         for i in self.request.json():
             data[self.request.json().index(i)] = i
         self.table.redraw()
+        print("././././././././././././././././.")

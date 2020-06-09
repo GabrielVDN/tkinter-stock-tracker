@@ -76,3 +76,4 @@ class UpdateStock(ttk.Frame):
         for i in self.request.json():
             data[self.request.json().index(i)] = i
         self.table.redraw()
+        print("././././././././././././././././.")
