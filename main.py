@@ -42,8 +42,6 @@ class StockTracker(tk.Tk):
         self.add_new_prod_price_piece = tk.StringVar()
 
 
-        
-
         self.frames = {}
 
         for F in (StartPage, StockPage, AddNewProd, DeleteProd, UpdateStock, ScanProd, UpdateStock):

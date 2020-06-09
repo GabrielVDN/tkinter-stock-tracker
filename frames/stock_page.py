@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkintertable import TableCanvas
+import requests
 
 
 class StockPage(ttk.Frame):
@@ -36,33 +37,10 @@ class StockPage(ttk.Frame):
         )
         go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
 
-        # The data from th API.
-        request = [
-            {
-                "name": "nutella",
-                "amount": 5,
-                "barcode": "12345",
-                "price_piece": 2.5
-            },
-            {
-                "name": "Cheakpeas",
-                "amount": 10,
-                "barcode": "789456",
-                "price_piece": 0.7
-            },
-            {
-                "name": "Oatmeal",
-                "amount": 10,
-                "barcode": "48988565AC",
-                "price_piece": 0.6
-            }
-        ]
 
         # Transform the API's data to the TableCanvas' form.
         # Use the unique index for the rows in the TableCanvas.
         data = {}
-        for i in request:
-            data[request.index(i)] = i
 
         # Create a new frame for the TableCanvas.
         tframe = ttk.Frame(self)

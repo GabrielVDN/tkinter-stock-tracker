@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 from tkintertable import TableCanvas
-import tkinter.font as font
 from tkinter import messagebox
+import requests
 
 
 class AddNewProd(ttk.Frame):
@@ -13,8 +13,6 @@ class AddNewProd(ttk.Frame):
         # Center your Frame in the middele-top.
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
-
-        ['name', 'amount', 'barcode', 'price_piece']
 
         # Create a forum to add new products, asking for all the information.
         # All entry fields.
@@ -83,24 +81,50 @@ class AddNewProd(ttk.Frame):
         label_amount.grid(row=3, column=0, padx=(0,60), sticky="E")
 
         label_price_piece = ttk.Label(self, text="Price/Piece:")
-        label_price_piece.grid(row=4, column=0, padx=(0,10), sticky="E")
+        label_price_piece.grid(row=4, column=0, padx=(0,30), sticky="E")
 
         
     def submit_new_prod(self):
         if self.controller.add_new_prod_barcode.get() and self.controller.add_new_prod_name.get() and self.controller.add_new_prod_amount.get():
-            if messagebox.askokcancel("Add new product", "Are you sure you want add this?!") == True:
-                print("This item has bean added!!!")
-                print(self.controller.add_new_prod_barcode.get())
-                print(self.controller.add_new_prod_name.get())
-                print(self.controller.add_new_prod_amount.get())
-                print(self.controller.add_new_prod_price_piece.get())
-                self.entry_barcode.delete(0, "end")
-                self.entry_name.delete(0, "end")
-                self.entry_amount.delete(0, "end")
-                self.entry_price_piece.delete(0, "end")
+            try:
+                int(self.controller.add_new_prod_amount.get())
+            except:
+                messagebox.showerror("Invalid Input", "You need to input an integer for the Amount.")
+                self.entry_amount.focus()
+                print("..........................................")
+            else:
+                if self.controller.add_new_prod_price_piece.get():
+                    try:
+                        self.controller.add_new_prod_price_piece.set(float(self.controller.add_new_prod_price_piece.get()))
+                        self.post_to_api()
+                    except ValueError:
+                        messagebox.showerror("Invalid Input", "You need to input an integer for the Price/Piece.")
+                        self.entry_price_piece.focus()
+                else: 
+                    self.post_to_api()
         else:
-            messagebox.showerror("Missing fields", "You need to input all the required field.")
-        self.entry_barcode.focus()
+            messagebox.showinfo("Missing fields", "You need to input all the required fields.")
+            self.entry_barcode.focus()
+
+    def post_to_api(self):
+        if messagebox.askokcancel("Add new product", "Are you sure you want add this?!"):
+            self.data_for_post = {}
+            self.data_for_post['name'] = self.controller.add_new_prod_barcode.get()
+            self.data_for_post['amount'] = self.controller.add_new_prod_name.get()
+            self.data_for_post['barcode'] = int(self.controller.add_new_prod_amount.get())
+            self.data_for_post['price_piece'] = float(self.controller.add_new_prod_price_piece.get())
+            print(self.data_for_post)
+            r = requests.post("http://127.0.0.1:8000/products/", data=self.data_for_post, auth=("gabriel", "1"))
+            
+            print(r.status_code)
+            
+            self.entry_barcode.delete(0, "end")
+            self.entry_name.delete(0, "end")
+            self.entry_amount.delete(0, "end")
+            self.entry_price_piece.delete(0, "end")
+            self.entry_barcode.focus()
+            self.entry_amount.focus()
+
 
     def focus_on_entry(self):
         self.entry_barcode.focus()
