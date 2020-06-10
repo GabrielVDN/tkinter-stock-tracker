@@ -69,6 +69,9 @@ class ScanProd(ttk.Frame):
             cellwidth=325,
             rowheight=40,
             rowheaderwidth=60, # To hide; set value to 0.
+            read_only=True,
+            rowselectedcolor=None,  # Get rid of the row selection.
+            selectedcolor=None, # Get rid of the cell selection.
             thefont=('Arial', 14),
         )
         self.table.show()
@@ -89,6 +92,9 @@ class ScanProd(ttk.Frame):
             cellwidth=325,
             rowheight=40,
             rowheaderwidth=60, # To hide; set value to 0.
+            read_only=True,
+            rowselectedcolor=None,  # Get rid of the row selection.
+            selectedcolor=None, # Get rid of the cell selection.
             thefont=('Arial', 14),
         )
         self.table.show()
@@ -125,6 +131,9 @@ class ScanProd(ttk.Frame):
                 cellwidth=325,
                 rowheight=40,
                 rowheaderwidth=60, # To hide; set value to 0.
+                read_only=True,
+                rowselectedcolor=None,  # Get rid of the row selection.
+                selectedcolor=None, # Get rid of the cell selection.
                 thefont=('Arial', 14),
             )
             self.table.show()
