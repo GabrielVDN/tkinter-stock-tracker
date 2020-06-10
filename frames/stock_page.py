@@ -51,7 +51,7 @@ class StockPage(ttk.Frame):
         self.tframe.grid(row=1, columnspan=4, padx=10, pady=10)
         self.table = TableCanvas(
             self.tframe,
-            data=data
+            data=data,
             read_only=True,
             width=1300,
             height=600,
