@@ -36,9 +36,8 @@ class UpdateStock(ttk.Frame):
             width=3
         )
         go_back_button.grid(row=0, column=1, padx=8, pady=8, sticky="NE")
-               
-        
-        # The data from th API
+
+        # The data from th API.
         request = requests.get("http://127.0.0.1:8000/products/", auth=("gabriel", "1"))
 
         # Transform the API's data to the TableCanvas' form.
@@ -67,12 +66,4 @@ class UpdateStock(ttk.Frame):
         self.search_entry.focus()
 
     def redraw_tables(self):
-        # The data from th API
-        self.request = requests.get("http://127.0.0.1:8000/products/", auth=("gabriel", "1"))
-
-        # Transform the API's data to the TableCanvas' form.
-        # Use the unique index for the rows in the TableCanvas.
-        data = {}
-        for i in self.request.json():
-            data[self.request.json().index(i)] = i
         self.table.redraw()

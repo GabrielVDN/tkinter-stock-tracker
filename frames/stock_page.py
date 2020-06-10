@@ -47,10 +47,10 @@ class StockPage(ttk.Frame):
             data[request.json().index(i)] = i
 
         # Create a new frame for the TableCanvas.
-        self.tframe = ttk.Frame(self)
-        self.tframe.grid(row=1, columnspan=4, padx=10, pady=10)
+        tframe = ttk.Frame(self)
+        tframe.grid(row=1, columnspan=4, padx=10, pady=10)
         self.table = TableCanvas(
-            self.tframe,
+            tframe,
             data=data,
             read_only=True,
             width=1300,
@@ -69,12 +69,4 @@ class StockPage(ttk.Frame):
         pass
 
     def redraw_tables(self):
-        # The data from th API
-        self.request = requests.get("http://127.0.0.1:8000/products/", auth=("gabriel", "1"))
-
-        # Transform the API's data to the TableCanvas' form.
-        # Use the unique index for the rows in the TableCanvas.
-        data = {}
-        for i in self.request.json():
-            data[self.request.json().index(i)] = i
         self.table.redraw()
