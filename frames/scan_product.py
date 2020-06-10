@@ -16,6 +16,9 @@ class ScanProd(ttk.Frame):
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
 
+        # Set the widget's background.
+        self["style"] = "Background.TFrame"
+
         self.search_entry = ttk.Entry(
             self,
             textvariable=controller.scan_prod_barcode,
@@ -38,7 +41,8 @@ class ScanProd(ttk.Frame):
             self,
             text="🔍",
             command=lambda: [self.search_entry.focus(), bind_entry_field(None)],
-            width=3
+            width=3,
+            style="Background.TButton"
         )
         search_button.grid(row=0, column=0, padx=(446, 0), pady=8) # Put it in the same column and adjust padx to be far enough.
 
@@ -46,7 +50,8 @@ class ScanProd(ttk.Frame):
             self,
             text="Go To Stock",
             command=lambda: controller.show_frame("StockPage"),
-            width=18
+            width=18,
+            style="Background.TButton"
         )
         button.grid(row=0, column=2, sticky="W")
 
@@ -54,7 +59,8 @@ class ScanProd(ttk.Frame):
             self,
             text="🔙",
             command=lambda: controller.show_frame("StartPage"),
-            width=3
+            width=3,
+            style="Background.TButton"
         )
         go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
 

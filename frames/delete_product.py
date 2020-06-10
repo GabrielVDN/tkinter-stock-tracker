@@ -11,7 +11,10 @@ class DeleteProd(ttk.Frame):
         # Center your Frame in the middele-top.
         self.columnconfigure(0, weight=1)
 
-        label = ttk.Label(self, text="Scan barcode")
+        # Set the widget's background.
+        self["style"] = "Background.TFrame"
+
+        label = ttk.Label(self, style="Background.TLabel", text="Scan barcode")
         label.grid(row=0, columnspan=2, pady=8)
 
         # Add some buttons.
@@ -19,7 +22,8 @@ class DeleteProd(ttk.Frame):
             self,
             text="🔙",
             command=lambda: controller.show_frame("StartPage"),
-            width=3
+            width=3,
+            style="Background.TButton"
         )
         go_back_button.grid(row=0, column=1, padx=8, pady=8, sticky="NE")
 
@@ -27,7 +31,8 @@ class DeleteProd(ttk.Frame):
             self,
             text="Delete Product",
             command=lambda: self.delete_product(),
-            width=20
+            width=20,
+            style="Background.TButton"
         )
         delete_button.grid(row=2, columnspan=2)
 

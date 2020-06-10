@@ -14,6 +14,9 @@ class AddNewProd(ttk.Frame):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
 
+        # Set the widget's background.
+        self["style"] = "Background.TFrame"
+
         # Create a forum to add new products, asking for all the information.
         # All entry fields.
         self.entry_barcode = ttk.Entry(
@@ -45,7 +48,8 @@ class AddNewProd(ttk.Frame):
             self,
             text="Submit Product",
             command=lambda: self.submit_new_prod(),
-            width=50
+            width=50,
+            style="Background.TButton"
         )
         submit_button.grid(row=5, columnspan=3)
 
@@ -56,7 +60,7 @@ class AddNewProd(ttk.Frame):
         
         # Put this dowm here so you can customize the 'padx' and 'pady.
         label_1 = ttk.Label(
-            self,
+            self, style="Background.TLabel",
             text="Please enter all the information,\n" + 
                 "   and don't edit the barcode!"
         )
@@ -66,21 +70,30 @@ class AddNewProd(ttk.Frame):
             self,
             text="🔙",
             command=lambda: controller.show_frame("StartPage"),
-            width=3
+            width=3,
+            style="Background.TButton"
         )
         go_back_button.grid(row=0, column=1, padx=8, pady=8, sticky="NE")
 
         # All labels.
-        label_barcode = ttk.Label(self, text="Barcode*:")
+        label_barcode = ttk.Label(
+            self, style="Background.TLabel", text="Barcode*:"
+        )
         label_barcode.grid(row=1, column=0, padx=(0,58), sticky="E")
 
-        label_name = ttk.Label(self, text="Name*:")
+        label_name = ttk.Label(
+            self, style="Background.TLabel", text="Name*:"
+        )
         label_name.grid(row=2, column=0, padx=(0,98), sticky="E")
 
-        label_amount = ttk.Label(self, text="Amount*:")
+        label_amount = ttk.Label(
+            self, style="Background.TLabel", text="Amount*:"
+        )
         label_amount.grid(row=3, column=0, padx=(0,60), sticky="E")
 
-        label_price_piece = ttk.Label(self, text="Price/Piece:")
+        label_price_piece = ttk.Label(
+            self, style="Background.TLabel", text="Price/Piece:"
+        )
         label_price_piece.grid(row=4, column=0, padx=(0,30), sticky="E")
 
         

@@ -12,12 +12,16 @@ class StockPage(ttk.Frame):
         # Center your Frame in the middele-top.
         self.columnconfigure(1, weight=1)
 
+        # Set the widget's background.
+        self["style"] = "Background.TFrame"
+        
         # Add some buttons.
         button_1 = ttk.Button(
             self,
             text="Add New Product",
             command=lambda: controller.show_frame("AddNewProd"),
-            width=19
+            width=19,
+            style="Background.TButton"
         )
         button_1.grid(row=0, column=0, padx=(70, 10), pady=8, sticky="E")
 
@@ -25,7 +29,8 @@ class StockPage(ttk.Frame):
             self,
             text="Delete Product",
             command=lambda: controller.show_frame("DeleteProd"),
-            width=19
+            width=19,
+            style="Background.TButton"
         )
         button_2.grid(row=0, column=1, pady=8, sticky="W")
 
@@ -33,7 +38,8 @@ class StockPage(ttk.Frame):
             self,
             text="🔙",
             command=lambda: controller.show_frame("StartPage"),
-            width=3
+            width=3,
+            style="Background.TButton"
         )
         go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
 

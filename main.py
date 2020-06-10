@@ -23,7 +23,24 @@ class StockTracker(tk.Tk):
         # Set the style to 'clam'.
         style = ttk.Style()
         style.theme_use("clam")
+        # Create some custom styles.
+        style.configure("Background.TFrame", background="#b8d8e0")
         
+        style.configure("Background.TLabel", background="#b8d8e0")
+
+        style.configure(
+            "Background.TButton", background="#f2e3a0",
+            bordercolor="black",
+            relief="solid"
+        )
+        style.map(
+            "Background.TButton",
+            background=[("active", "#edd97e")],
+            font=[("active",  ("TkDefaultFont", 22))]
+        )
+        
+        # Set the widget's background.
+        self["background"] = "#b8d8e0"
         # Give the Widget a name.
         self.title("Stock tracker")
         # Give the Widget a size.
