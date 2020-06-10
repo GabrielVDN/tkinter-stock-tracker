@@ -37,6 +37,11 @@ class StockPage(ttk.Frame):
         )
         go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
 
+
+    def focus_on_entry(self):
+        pass
+
+    def redraw_tables(self):
         # The data from th API.
         request = requests.get("http://127.0.0.1:8000/products/", auth=("gabriel", "1"))
 
@@ -63,10 +68,3 @@ class StockPage(ttk.Frame):
             thefont=('Arial', 15),
         )
         self.table.show()
-
-
-    def focus_on_entry(self):
-        pass
-
-    def redraw_tables(self):
-        self.table.redraw()
