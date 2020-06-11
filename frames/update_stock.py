@@ -13,6 +13,8 @@ class UpdateStock(ttk.Frame):
         # Center your Frame, all the entry's and labels in the middle. 
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+
 
         # Set the widget's background.
         self["style"] = "Background.TFrame"
@@ -26,8 +28,8 @@ class UpdateStock(ttk.Frame):
         self.search_entry.grid(row=0, column=0, padx=(72, 12), sticky="W")
 
         def bind_entry_field(event):
-            self.search_entry.delete(0, 'end')
             self.get_tables()
+            self.search_entry.delete(0, 'end')
 
         # Bind 'Enter' to the Enty field.
         self.search_entry.bind('<Return>', bind_entry_field)
@@ -40,7 +42,16 @@ class UpdateStock(ttk.Frame):
             width=3,
             style="Background.TButton"
         )
-        search_button.grid(row=0, column=0, padx=(200, 0), pady=8) # Put it in the same column and adjust padx to be far enough.
+        search_button.grid(row=0, column=0, padx=(446, 0), pady=8) # Put it in the same column and adjust padx to be far enough.
+
+        button = ttk.Button(
+            self,
+            text="Go To Stock",
+            command=lambda: controller.show_frame("StockPage"),
+            width=18,
+            style="Background.TButton"
+        )
+        button.grid(row=0, column=2, sticky="W")
 
         go_back_button = ttk.Button(
             self,
@@ -49,7 +60,7 @@ class UpdateStock(ttk.Frame):
             width=3,
             style="Background.TButton"
         )
-        go_back_button.grid(row=0, column=1, padx=8, pady=8, sticky="NE")
+        go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
 
         # Create a new frame for the TableCanvas.
         tframe = ttk.Frame(self)
@@ -58,13 +69,15 @@ class UpdateStock(ttk.Frame):
             tframe,
             data={1:{"name": "", "amount": "", "barcode": "", "price_piece": ""}},
             width=1300,
-            height=600,
+            height=50,
             cellwidth=325,
             rowheight=40,
             rowheaderwidth=60, # To hide; set value to 0.
             thefont=('Arial', 14),
         )
         self.table.show()
+
+        
 
     
     def focus_on_entry(self):
@@ -78,10 +91,13 @@ class UpdateStock(ttk.Frame):
             tframe,
             data={1:{"name": "", "amount": "", "barcode": "", "price_piece": ""}},
             width=1300,
-            height=600,
+            height=50,
             cellwidth=325,
             rowheight=40,
             rowheaderwidth=60, # To hide; set value to 0.
+            read_only=True,
+            rowselectedcolor=None,  # Get rid of the row selection.
+            selectedcolor=None, # Get rid of the cell selection.
             thefont=('Arial', 14),
         )
         self.table.show()
@@ -89,14 +105,20 @@ class UpdateStock(ttk.Frame):
     def get_tables(self):
         try:
             # The data from th API.
-            url = f"http://127.0.0.1:8000/products/{self.controller.update_stock_barcode.get()}"
-            request = requests.get(url, auth=("gabriel", "1"))
+            url = f"http://127.0.0.1:8000/products/{self.controller.update_stock_barcode.get()}/"
+            request = requests.get(url, auth=("gabriel", "1")).json()
 
             # Transform the API's data to the TableCanvas' form.
             # Use the unique index for the rows in the TableCanvas.
-            data = {}
-            for i in request.json():
-                data[request.json().index(i)] = i
+            if request == {'detail': 'Not found.'}:
+                data={1:{"name": "", "amount": "", "barcode": "", "price_piece": ""}}
+                if messagebox.askyesno(
+                    "Not In Stock", "This product does not yet exist in stock." +
+                    "\nYou need to add it first, do you want to add it?"
+                ):
+                    self.controller.show_frame("AddNewProd")
+            else:
+                data = {1: request}
 
             # Create a new frame for the TableCanvas.
             tframe = ttk.Frame(self)
@@ -105,12 +127,19 @@ class UpdateStock(ttk.Frame):
                 tframe,
                 data=data,
                 width=1300,
-                height=600,
+                height=50,
                 cellwidth=325,
                 rowheight=40,
                 rowheaderwidth=60, # To hide; set value to 0.
+                read_only=True,
+                rowselectedcolor=None,  # Get rid of the row selection.
+                selectedcolor=None, # Get rid of the cell selection.
                 thefont=('Arial', 14),
             )
             self.table.show()
         except:
-            messagebox.showerror("API Error", "The api isn't running.")
+            if messagebox.askyesno(
+                "Not In Stock", "This product does not yet exist in stock." +
+                "\nYou need to add it first, do you want to add it?"
+            ):
+                self.controller.show_frame("AddNewProd")

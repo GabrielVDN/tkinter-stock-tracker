@@ -119,7 +119,6 @@ class AddNewProd(ttk.Frame):
             self.entry_barcode.focus()
 
     def post_to_api(self):
-        print('inpost to api')
         try:
             '''Post to the api if the messagebox is True'''
             if messagebox.askokcancel("Add new product", "Are you sure you want add this?!"):
@@ -128,7 +127,6 @@ class AddNewProd(ttk.Frame):
                 self.data_for_post['name'] = self.controller.add_new_prod_name.get()
                 self.data_for_post['amount'] = int(self.controller.add_new_prod_amount.get())
                 self.data_for_post['price_piece'] = self.controller.add_new_prod_price_piece.get()
-                print(self.data_for_post)
                 request = requests.get(f"http://127.0.0.1:8000/products/{self.controller.add_new_prod_barcode.get()}/", auth=("gabriel", "1"))
                 if request.status_code != 200:
                     requests.post("http://127.0.0.1:8000/products/", data=self.data_for_post, auth=("gabriel", "1"))
