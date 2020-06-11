@@ -3,7 +3,6 @@ from tkinter import ttk
 from tkintertable import TableCanvas
 from tkinter import messagebox
 import requests
-import time
 
 
 class ScanProd(ttk.Frame):
@@ -28,8 +27,6 @@ class ScanProd(ttk.Frame):
         self.search_entry.grid(row=0, column=0, padx=(72, 12), sticky="W")
 
         def bind_entry_field(event):
-            print(controller.scan_prod_barcode.get())
-            time.sleep(1) # Sleep for 1 seconds
             self.get_tables()
             self.search_entry.delete(0, 'end')
 
@@ -110,38 +107,44 @@ class ScanProd(ttk.Frame):
         try:
             # The data from th API.
             url = f"http://127.0.0.1:8000/products/{self.controller.scan_prod_barcode.get()}/"
-            
-            
             request = requests.get(url, auth=("gabriel", "1")).json()
 
-            # Updat data
-            if request['amount'] > 0:
-                request['amount'] -= 1
-                requests.put(url, data=request, auth=("gabriel", "1"))
-            else:
-                messagebox.showerror("No more stock", f"You ran out of {request['name']}.")
+            try:
+                # Updat data
+                if request['amount'] > 0:
+                    request['amount'] -= 1
+                    requests.put(url, data=request, auth=("gabriel", "1"))
+                else:
+                    messagebox.showerror("No more stock", f"You ran out of {request['name']}.")
 
 
-            # Transform the API's data to the TableCanvas' form.
-            # Use the unique index for the rows in the TableCanvas.
-            data = {1: request}
-            
-                # Create a new frame for the TableCanvas.
-            tframe = ttk.Frame(self)
-            tframe.grid(row=1, columnspan=4, padx=10, pady=10)
-            self.table = TableCanvas(
-                tframe,
-                data=data,
-                width=1300,
-                height=600,
-                cellwidth=325,
-                rowheight=40,
-                rowheaderwidth=60, # To hide; set value to 0.
-                read_only=True,
-                rowselectedcolor=None,  # Get rid of the row selection.
-                selectedcolor=None, # Get rid of the cell selection.
-                thefont=('Arial', 14),
-            )
-            self.table.show()
+                # Transform the API's data to the TableCanvas' form.
+                # Use the unique index for the rows in the TableCanvas.
+                data = {1: request}
+                
+                    # Create a new frame for the TableCanvas.
+                tframe = ttk.Frame(self)
+                tframe.grid(row=1, columnspan=4, padx=10, pady=10)
+                self.table = TableCanvas(
+                    tframe,
+                    data=data,
+                    width=1300,
+                    height=600,
+                    cellwidth=325,
+                    rowheight=40,
+                    rowheaderwidth=60, # To hide; set value to 0.
+                    read_only=True,
+                    rowselectedcolor=None,  # Get rid of the row selection.
+                    selectedcolor=None, # Get rid of the cell selection.
+                    thefont=('Arial', 14),
+                )
+                self.table.show()
+            except:
+                if messagebox.askyesno(
+                    "Not In Stock", "This product does not yet exist in stock." +
+                    "\nYou need to add it first, do you want to add it?"
+                ):
+                    self.controller.show_frame("AddNewProd")
         except:
-            pass
+            messagebox.showerror("API Error", "The api isn't running.")
+

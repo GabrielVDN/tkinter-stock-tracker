@@ -104,7 +104,6 @@ class AddNewProd(ttk.Frame):
             except:
                 messagebox.showerror("Invalid Input", "You need to input an integer for the Amount.")
                 self.entry_amount.focus()
-                print("..........................................")
             else:
                 if self.controller.add_new_prod_price_piece.get():
                     try:
@@ -120,16 +119,28 @@ class AddNewProd(ttk.Frame):
             self.entry_barcode.focus()
 
     def post_to_api(self):
-        '''Post to the api if the messagebox is True'''
-        if messagebox.askokcancel("Add new product", "Are you sure you want add this?!"):
-            self.data_for_post = {}
-            self.data_for_post['barcode'] = self.controller.add_new_prod_barcode.get()
-            self.data_for_post['name'] = self.controller.add_new_prod_name.get()
-            self.data_for_post['amount'] = int(self.controller.add_new_prod_amount.get())
-            self.data_for_post['price_piece'] = self.controller.add_new_prod_price_piece.get()
-            requests.post("http://127.0.0.1:8000/products/", data=self.data_for_post, auth=("gabriel", "1"))
+        print('inpost to api')
+        try:
+            '''Post to the api if the messagebox is True'''
+            if messagebox.askokcancel("Add new product", "Are you sure you want add this?!"):
+                self.data_for_post = {}
+                self.data_for_post['barcode'] = self.controller.add_new_prod_barcode.get()
+                self.data_for_post['name'] = self.controller.add_new_prod_name.get()
+                self.data_for_post['amount'] = int(self.controller.add_new_prod_amount.get())
+                self.data_for_post['price_piece'] = self.controller.add_new_prod_price_piece.get()
+                print(self.data_for_post)
+                request = requests.get(f"http://127.0.0.1:8000/products/{self.controller.add_new_prod_barcode.get()}/", auth=("gabriel", "1"))
+                if request.status_code != 200:
+                    requests.post("http://127.0.0.1:8000/products/", data=self.data_for_post, auth=("gabriel", "1"))
+                else:
+                    messagebox.showerror(
+                        "Product Already In Stock", f"This product with {self.controller.add_new_prod_barcode.get()} as barcode " +
+                        "does already exist in stock.\nScan or update it instead!"
+                        )     
+        except:
+            messagebox.showerror("API Error", "The api isn't running.")
 
-            self.empty_entry_fields()
+        self.empty_entry_fields()
 
     def empty_entry_fields(self):      
         self.entry_barcode.delete(0, "end")

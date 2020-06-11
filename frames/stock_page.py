@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkintertable import TableCanvas
+from tkinter import messagebox
 import requests
 
 
@@ -48,29 +49,32 @@ class StockPage(ttk.Frame):
         pass
 
     def redraw_tables(self):
-        # The data from th API.
-        request = requests.get("http://127.0.0.1:8000/products/", auth=("gabriel", "1"))
+        try:
+            # The data from th API.
+            request = requests.get("http://127.0.0.1:8000/products/", auth=("gabriel", "1"))
 
-        # Transform the API's data to the TableCanvas' form.
-        # Use the unique index for the rows in the TableCanvas.
-        data = {}
-        for i in request.json():
-            data[request.json().index(i)] = i
+            # Transform the API's data to the TableCanvas' form.
+            # Use the unique index for the rows in the TableCanvas.
+            data = {}
+            for i in request.json():
+                data[request.json().index(i)] = i
 
-        # Create a new frame for the TableCanvas.
-        tframe = ttk.Frame(self)
-        tframe.grid(row=1, columnspan=4, padx=10, pady=10)
-        self.table = TableCanvas(
-            tframe,
-            data=data,
-            read_only=True,
-            width=1300,
-            height=600,
-            cellwidth=325,
-            rowheight=40,
-            rowheaderwidth=60, # To hide; set value to 0.
-            rowselectedcolor=None,  # Get rid of the row selection.
-            selectedcolor=None, # Get rid of the cell selection.
-            thefont=('Arial', 15),
-        )
-        self.table.show()
+            # Create a new frame for the TableCanvas.
+            tframe = ttk.Frame(self)
+            tframe.grid(row=1, columnspan=4, padx=10, pady=10)
+            self.table = TableCanvas(
+                tframe,
+                data=data,
+                read_only=True,
+                width=1300,
+                height=600,
+                cellwidth=325,
+                rowheight=40,
+                rowheaderwidth=60, # To hide; set value to 0.
+                rowselectedcolor=None,  # Get rid of the row selection.
+                selectedcolor=None, # Get rid of the cell selection.
+                thefont=('Arial', 15),
+            )
+            self.table.show()
+        except:
+            messagebox.showerror("API Error", "The api isn't running.")

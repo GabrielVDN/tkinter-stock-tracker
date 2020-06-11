@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkintertable import TableCanvas
 import requests
-import time
+from tkinter import messagebox
 
 
 class UpdateStock(ttk.Frame):
@@ -26,8 +26,6 @@ class UpdateStock(ttk.Frame):
         self.search_entry.grid(row=0, column=0, padx=(72, 12), sticky="W")
 
         def bind_entry_field(event):
-            print(controller.update_stock_barcode.get())
-            time.sleep(1) # Sleep for 1 seconds
             self.search_entry.delete(0, 'end')
             self.get_tables()
 
@@ -89,27 +87,30 @@ class UpdateStock(ttk.Frame):
         self.table.show()
         
     def get_tables(self):
-        # The data from th API.
-        url = f"http://127.0.0.1:8000/products/{self.controller.update_stock_barcode.get()}"
-        request = requests.get(url, auth=("gabriel", "1"))
+        try:
+            # The data from th API.
+            url = f"http://127.0.0.1:8000/products/{self.controller.update_stock_barcode.get()}"
+            request = requests.get(url, auth=("gabriel", "1"))
 
-        # Transform the API's data to the TableCanvas' form.
-        # Use the unique index for the rows in the TableCanvas.
-        data = {}
-        for i in request.json():
-            data[request.json().index(i)] = i
+            # Transform the API's data to the TableCanvas' form.
+            # Use the unique index for the rows in the TableCanvas.
+            data = {}
+            for i in request.json():
+                data[request.json().index(i)] = i
 
-        # Create a new frame for the TableCanvas.
-        tframe = ttk.Frame(self)
-        tframe.grid(row=1, columnspan=4, padx=10, pady=10)
-        self.table = TableCanvas(
-            tframe,
-            data=data,
-            width=1300,
-            height=600,
-            cellwidth=325,
-            rowheight=40,
-            rowheaderwidth=60, # To hide; set value to 0.
-            thefont=('Arial', 14),
-        )
-        self.table.show()
+            # Create a new frame for the TableCanvas.
+            tframe = ttk.Frame(self)
+            tframe.grid(row=1, columnspan=4, padx=10, pady=10)
+            self.table = TableCanvas(
+                tframe,
+                data=data,
+                width=1300,
+                height=600,
+                cellwidth=325,
+                rowheight=40,
+                rowheaderwidth=60, # To hide; set value to 0.
+                thefont=('Arial', 14),
+            )
+            self.table.show()
+        except:
+            messagebox.showerror("API Error", "The api isn't running.")
