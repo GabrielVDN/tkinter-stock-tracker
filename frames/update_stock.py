@@ -15,7 +15,6 @@ class UpdateStock(ttk.Frame):
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
 
-
         # Set the widget's background.
         self["style"] = "Background.TFrame"
 
@@ -42,7 +41,7 @@ class UpdateStock(ttk.Frame):
             width=3,
             style="Background.TButton"
         )
-        search_button.grid(row=0, column=0, padx=(446, 0), pady=8) # Put it in the same column and adjust padx to be far enough.
+        search_button.grid(row=0, column=0, padx=(446, 0), pady=10) # Put it in the same column and adjust padx to be far enough.
 
         button = ttk.Button(
             self,
@@ -77,16 +76,74 @@ class UpdateStock(ttk.Frame):
         )
         self.table.show()
 
-        
+        # Create a new frame for the Labels and Entry's.
+        tframe = ttk.Frame(self)
+        tframe["style"] = "Background.TFrame"
+        tframe.grid(row=2, columnspan=4, pady=80)
+        # All labels.
+        label_barcode = ttk.Label(
+            tframe, style="Background.TLabel", text="Barcode*:"
+        )
+        label_barcode.grid(row=0, column=0, padx=6, pady=10)
 
-    
+        label_name = ttk.Label(
+            tframe, style="Background.TLabel", text="Name*:"
+        )
+        label_name.grid(row=0, column=1, padx=6, pady=10)
+
+        label_amount = ttk.Label(
+            tframe, style="Background.TLabel", text="Amount*:"
+        )
+        label_amount.grid(row=0, column=2, padx=6, pady=10)
+
+        label_price_piece = ttk.Label(
+            tframe, style="Background.TLabel", text="Price/Piece:"
+        )
+        label_price_piece.grid(row=0, column=3, padx=6, pady=10)
+
+        # All entry fields.
+        self.entry_barcode = ttk.Entry(
+            tframe, width=15, textvariable=controller.add_new_prod_barcode,
+            font=("TkDefaultFont", 20)
+        )
+        self.entry_barcode.grid(row=1, column=0, sticky="W", padx=6, pady=10)
+
+        self.entry_name = ttk.Entry(
+            tframe, width=15, textvariable=controller.add_new_prod_name,
+            font=("TkDefaultFont", 20)
+        )
+        self.entry_name.grid(row=1, column=1, sticky="W", padx=6, pady=10)
+
+        self.entry_amount = ttk.Entry(
+            tframe, width=15, textvariable=controller.add_new_prod_amount,
+            font=("TkDefaultFont", 20)
+        )
+        self.entry_amount.grid(row=1, column=2, sticky="W", padx=6, pady=10)
+
+        self.entry_price_piece = ttk.Entry(
+            tframe, width=15, textvariable=controller.add_new_prod_price_piece,
+            font=("TkDefaultFont", 20)
+        )
+        self.entry_price_piece.grid(row=1, column=3, sticky="W", padx=6, pady=10)
+
+        # Add some buttons.
+        submit_button = ttk.Button(
+            tframe,
+            text="Submit Product",
+            # command=lambda: self.submit_new_prod(),
+            width=62,
+            style="Background.TButton"
+        )
+        submit_button.grid(row=4, columnspan=4)
+
+
     def focus_on_entry(self):
         pass
 
     def redraw_tables(self):
         # Create a new frame for the TableCanvas.
         tframe = ttk.Frame(self)
-        tframe.grid(row=1, columnspan=4, padx=10, pady=10)
+        tframe.grid(row=1, columnspan=4, pady=10)
         self.table = TableCanvas(
             tframe,
             data={1:{"name": "", "amount": "", "barcode": "", "price_piece": ""}},
@@ -122,7 +179,7 @@ class UpdateStock(ttk.Frame):
 
             # Create a new frame for the TableCanvas.
             tframe = ttk.Frame(self)
-            tframe.grid(row=1, columnspan=4, padx=10, pady=10)
+            tframe.grid(row=1, columnspan=4, pady=10)
             self.table = TableCanvas(
                 tframe,
                 data=data,
