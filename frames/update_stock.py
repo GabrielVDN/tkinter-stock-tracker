@@ -159,12 +159,12 @@ class UpdateStock(ttk.Frame):
             width=5.5,
             style="LabelBackground.TButton"
         )
-        delete_button.grid(row=3, column=2, sticky="W", padx=(122,0), pady=(30,0))
+        delete_button.grid(row=3, column=2, sticky="W", padx=(92,0), pady=(30,0))
 
         # Create a new frame for the button.
         tframe = ttk.Frame(self)
         tframe["style"] = "Background.TFrame"
-        tframe.grid(row=2, column=0, padx=(228,0), pady=(316,0))
+        tframe.grid(row=2, column=0, padx=(226,0), pady=(316,0))
 
         new_button = ttk.Button(
             tframe,

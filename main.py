@@ -40,13 +40,14 @@ class StockTracker(tk.Tk):
         )
         
         style.configure(
-            "LabelBackground.TButton", background="#A5C2C9",
-            bordercolor="#b8d8e0",
+            "LabelBackground.TButton", background="#a5c2c9",
+            bordercolor="#859ca2",
+            relief="solid",
             font=("System", 12),
         )
         style.map(
             "LabelBackground.TButton",
-            background=[("active", "#94AEB4")],
+            background=[("active", "#94aeb4")],
         )
 
         # Set the widget's background.
