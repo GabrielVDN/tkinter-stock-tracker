@@ -119,8 +119,8 @@ class AddNewProd(ttk.Frame):
             self.entry_barcode.focus()
 
     def post_to_api(self):
-        try:
-            '''Post to the api if the messagebox is True'''
+        '''Post to the api if the messagebox is True'''
+        try:  
             if messagebox.askokcancel("Add new product", "Are you sure you want add this?!"):
                 self.data_for_post = {}
                 self.data_for_post['barcode'] = self.controller.add_new_prod_barcode.get()
@@ -145,6 +145,7 @@ class AddNewProd(ttk.Frame):
         self.entry_name.delete(0, "end")
         self.entry_amount.delete(0, "end")
         self.entry_price_piece.delete(0, "end")
+        
         self.entry_barcode.focus()
 
 

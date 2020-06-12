@@ -39,6 +39,16 @@ class StockTracker(tk.Tk):
             font=[("active",  ("TkDefaultFont", 22))]
         )
         
+        style.configure(
+            "LabelBackground.TButton", background="#A5C2C9",
+            bordercolor="#b8d8e0",
+            font=("System", 12),
+        )
+        style.map(
+            "LabelBackground.TButton",
+            background=[("active", "#94AEB4")],
+        )
+
         # Set the widget's background.
         self["background"] = "#b8d8e0"
         # Give the Widget a name.
@@ -63,9 +73,10 @@ class StockTracker(tk.Tk):
         self.scan_prod_barcode = tk.StringVar()
         #            UpdateStock frame           #
         self.update_stock_barcode = tk.StringVar()
-        
-
-
+        self.update_prod_name = tk.StringVar()
+        self.update_prod_amount = tk.StringVar()
+        self.update_prod_barcode = tk.StringVar()
+        self.update_prod_price_piece = tk.StringVar()
 
         self.frames = {}
 
