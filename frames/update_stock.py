@@ -37,10 +37,10 @@ class UpdateStock(ttk.Frame):
         # Add some buttons.
         search_button = ttk.Button(
             self,
-            text="🔍",
+            text="SEARCH",
             command=lambda: [self.search_entry.focus(), bind_entry_field(None)],
-            width=3,
-            style="Background.TButton"
+            width=9,
+            style="SearchButton.TButton"
         )
         search_button.grid(row=0, column=0, padx=(446, 0), pady=10) # Put it in the same column and adjust padx to be far enough.
 
@@ -164,7 +164,7 @@ class UpdateStock(ttk.Frame):
         # Create a new frame for the button.
         tframe = ttk.Frame(self)
         tframe["style"] = "Background.TFrame"
-        tframe.grid(row=2, column=0, padx=(220,0), pady=(316,0))
+        tframe.grid(row=2, column=0, padx=(154,0), pady=(316,0))
 
         new_button = ttk.Button(
             tframe,

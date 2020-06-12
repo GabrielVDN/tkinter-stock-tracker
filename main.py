@@ -41,6 +41,18 @@ class StockTracker(tk.Tk):
         )
 
         style.configure(
+            "SearchButton.TButton", background="#f2e3a0",
+            bordercolor="black",
+            font=("TkDefaultFont", 16),
+            relief="solid"
+        )
+        style.map(
+            "SearchButton.TButton",
+            background=[("active", "#edd97e")],
+            font=[("active",  ("TkDefaultFont", 18))]
+        )
+
+        style.configure(
             "Background.TButton", background="#f2e3a0",
             bordercolor="black",
             relief="solid"

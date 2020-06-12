@@ -36,10 +36,10 @@ class ScanProd(ttk.Frame):
         # Add some buttons.
         search_button = ttk.Button(
             self,
-            text="🔍",
+            text="SEARCH",
             command=lambda: [self.search_entry.focus(), bind_entry_field(None)],
-            width=3,
-            style="Background.TButton"
+            width=9,
+            style="SearchButton.TButton"
         )
         search_button.grid(row=0, column=0, padx=(446, 0), pady=8) # Put it in the same column and adjust padx to be far enough.
 
