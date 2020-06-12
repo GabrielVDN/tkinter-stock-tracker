@@ -59,14 +59,14 @@ class UpdateStock(ttk.Frame):
 
         go_back_button = ttk.Button(
             self,
-            text="🔙",
+            text="BACK",
             command=lambda: [
                 controller.show_frame("StartPage"),
                 self.empty_entry_fields(),
                 self.block_entry_fields()
             ],
-            width=3,
-            style="Background.TButton"
+            width=5,
+            style="BackButton.TButton"
         )
         go_back_button.grid(row=0, column=3, padx=8, pady=8, sticky="NE")
 
@@ -164,7 +164,7 @@ class UpdateStock(ttk.Frame):
         # Create a new frame for the button.
         tframe = ttk.Frame(self)
         tframe["style"] = "Background.TFrame"
-        tframe.grid(row=2, column=0, padx=(226,0), pady=(316,0))
+        tframe.grid(row=2, column=0, padx=(220,0), pady=(316,0))
 
         new_button = ttk.Button(
             tframe,

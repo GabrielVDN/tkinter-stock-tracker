@@ -20,10 +20,10 @@ class DeleteProd(ttk.Frame):
         # Add some buttons.
         go_back_button = ttk.Button(
             self,
-            text="🔙",
+            text="BACK",
             command=lambda: controller.show_frame("StartPage"),
-            width=3,
-            style="Background.TButton"
+            width=5,
+            style="BackButton.TButton"
         )
         go_back_button.grid(row=0, column=1, padx=8, pady=8, sticky="NE")
 

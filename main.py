@@ -29,6 +29,18 @@ class StockTracker(tk.Tk):
         style.configure("Background.TLabel", background="#b8d8e0")
 
         style.configure(
+            "BackButton.TButton", background="#f2e3a0",
+            bordercolor="black",
+            font=("TkDefaultFont", 10),
+            relief="solid"
+        )
+        style.map(
+            "BackButton.TButton",
+            background=[("active", "#edd97e")],
+            font=[("active",  ("TkDefaultFont", 8))]
+        )
+
+        style.configure(
             "Background.TButton", background="#f2e3a0",
             bordercolor="black",
             relief="solid"
