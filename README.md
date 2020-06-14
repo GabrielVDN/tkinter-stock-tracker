@@ -5,7 +5,8 @@ It is a good way to learn how to switch between multiple frames.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Do it all in the folder of stock-tracker
 
 ### Prerequisites
 
