@@ -6,7 +6,6 @@ It is a good way to learn how to switch between multiple frames.
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-Do it all in the folder of stock-tracker
 
 ### Prerequisites
 
@@ -14,6 +13,12 @@ First of start with cloning the git repository:
 
 ```
 git clone https://github.com/GabrielVDN/stock-tracker.git
+```
+
+Change your working directory:
+
+```
+cd stock-tracker
 ```
 ### Installing
 
