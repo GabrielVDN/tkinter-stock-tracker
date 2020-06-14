@@ -40,3 +40,4 @@ pip install -r requirements.txt
 
 Now you have to clone the api to store the stock in.
 Go to: https://github.com/GabrielVDN/stock_rest_api
+If you followed all the instructions you can run the **main.py** file.
