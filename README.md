@@ -14,6 +14,8 @@ First of start with cloning the git repository:
 ```
 git clone https://github.com/GabrielVDN/stock-tracker.git
 ```
+###Go to https://github.com/GabrielVDN/stock_rest_api
+https://github.com/GabrielVDN/stock_rest_api
 
 ### Installing
 
