@@ -14,8 +14,6 @@ First of start with cloning the git repository:
 ```
 git clone https://github.com/GabrielVDN/stock-tracker.git
 ```
-###Go to https://github.com/GabrielVDN/stock_rest_api
-
 ### Installing
 
 Next follow these steps, start with creating a virtual environment:
@@ -34,3 +32,4 @@ Install the requirements:
 pip install -r requirements.txt
 ```
 
+###Go to https://github.com/GabrielVDN/stock_rest_api
