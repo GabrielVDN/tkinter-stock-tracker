@@ -32,4 +32,5 @@ Install the requirements:
 pip install -r requirements.txt
 ```
 
-###Go to https://github.com/GabrielVDN/stock_rest_api
+Now you have to clone the api to store the stock in.
+Go to: https://github.com/GabrielVDN/stock_rest_api
