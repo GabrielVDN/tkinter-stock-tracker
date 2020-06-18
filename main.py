@@ -74,7 +74,7 @@ class StockTracker(tk.Tk):
             background=[("active", "#94aeb4")],
         )
 
-        # Set the widget's background
+        # Set the widget's background.
         self["background"] = "#b8d8e0"
         # Give the Widget a name.
         self.title("Stock tracker")
