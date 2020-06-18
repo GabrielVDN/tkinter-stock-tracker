@@ -2,6 +2,8 @@
 
 This project is a Tkinter GUI of a stock tracker.
 It is a good way to learn how to switch between multiple frames.
+<br>
+To test it or to see the GUI download the exe and open it, this doesn't need adjustments, it's ready to go.
 
 ## Getting Started
 
