@@ -94,7 +94,7 @@ class StockTracker(tk.Tk):
         self.add_new_prod_price_piece = tk.StringVar()
         # DeleteProd frame            #
         self.delete_prod_barcode = tk.StringVar()
-        #            ScanProd frame             #
+        #           ScanProd frame             #
         self.scan_prod_barcode = tk.StringVar()
         #            UpdateStock frame           #
         self.update_stock_barcode = tk.StringVar()
